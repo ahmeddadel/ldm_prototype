@@ -129,48 +129,111 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardView_contact_us" />
 
-    <ImageView
-        android:id="@+id/image_view_dev_logo_1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/adel"
-        android:src="@drawable/x_dev_adel"
-        app:layout_constraintEnd_toStartOf="@id/image_view_dev_logo_2"
+
+    <LinearLayout
+        android:id="@+id/dev_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/dev_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_dev_by" />
+        app:layout_constraintTop_toBottomOf="@id/tv_dev_by">
 
-    <ImageView
-        android:id="@+id/image_view_dev_logo_2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/jamal"
-        android:src="@drawable/x_dev_jamal"
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/ahmed_adel"
+            android:src="@drawable/x_dev_adel" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:gravity="center"
+            android:text="@string/ahmed_adel"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/dev_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_view_dev_logo_1"
-        app:layout_constraintTop_toBottomOf="@id/tv_dev_by" />
+        app:layout_constraintStart_toEndOf="@id/dev_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_dev_by">
 
-    <ImageView
-        android:id="@+id/image_view_dev_logo_3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="7dp"
-        android:contentDescription="@string/omar"
-        android:src="@drawable/x_dev_omar"
-        app:layout_constraintEnd_toStartOf="@id/image_view_dev_logo_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_dev_logo_1" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/mohammed_jamal"
+            android:src="@drawable/x_dev_jamal" />
 
-    <ImageView
-        android:id="@+id/image_view_dev_logo_4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="7dp"
-        android:contentDescription="@string/ayman"
-        android:src="@drawable/x_dev_ayman"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_view_dev_logo_1"
-        app:layout_constraintTop_toBottomOf="@id/image_view_dev_logo_2" />
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:gravity="center"
+            android:text="@string/mohammed_jamal"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/dev_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/dev_1"
+        app:layout_constraintStart_toStartOf="@id/dev_1"
+        app:layout_constraintTop_toBottomOf="@id/dev_1">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/omar_ahmed"
+            android:src="@drawable/x_dev_omar" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:gravity="center"
+            android:text="@string/omar_ahmed"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dev_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/dev_2"
+        app:layout_constraintStart_toStartOf="@id/dev_2"
+        app:layout_constraintTop_toBottomOf="@id/dev_2">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/ayman_ashraf"
+            android:src="@drawable/x_dev_ayman" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:gravity="center"
+            android:text="@string/ayman_ashraf"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

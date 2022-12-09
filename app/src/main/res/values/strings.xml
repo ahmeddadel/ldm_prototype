@@ -29,7 +29,6 @@
     <string name="login_hint_message">Please Sign-In or Create a new account.</string>
     <string name="loin_d_moyenne">LOIN DÉ MOYENNE</string>
     <string name="developed_by">Developed by:-</string>
-    <string name="adel">Adel</string>
     <string name="create_an_account">Create an account</string>
     <string name="please_enter_your_email_and_the_new_password">Please enter your email and the new password.</string>
     <string name="mines">–</string>
@@ -49,7 +48,8 @@
     <string name="email_">Email :</string>
     <string name="phone_">Phone Number :</string>
     <string name="your_cart_is_empty">Your cart is empty!</string>
-    <string name="ayman">Ayman</string>
-    <string name="jamal">Jamal</string>
-    <string name="omar">Omar</string>
+    <string name="ahmed_adel">Ahmed Adel</string>
+    <string name="mohammed_jamal">Mohammed Jamal</string>
+    <string name="omar_ahmed">Omar Ahmed</string>
+    <string name="ayman_ashraf">Ayman Ashraf</string>
 </resources>
