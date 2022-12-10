@@ -25,10 +25,11 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/rounded_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:src="@drawable/wallpaper_about"
+                app:layout_constraintBottom_toTopOf="@id/tv_company_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
