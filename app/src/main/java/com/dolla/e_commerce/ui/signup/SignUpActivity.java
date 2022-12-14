@@ -1,5 +1,6 @@
 package com.dolla.e_commerce.ui.signup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private View layoutAuthentication;
     private LDMOpenHelper ldmOpenHelper;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         layoutAuthentication = findViewById(R.id.layout_authentication);
 
+        context = getApplicationContext();
+
         // create a new instance of LDMOpenHelper
         ldmOpenHelper = LDMOpenHelper.getInstance(this);
 
@@ -60,6 +64,8 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // to prevent memory leak
+        context = null;
         // animate the activity to slide out from left to right
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -112,7 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
         if (!cbCheckTerms.isChecked()) {
-            Toasty.error(SignUpActivity.this, "You have to accept our terms & conditions", Toast.LENGTH_LONG, true).show();
+            Toasty.error(context, "You have to accept our terms & conditions", Toast.LENGTH_LONG, true).show();
             return false;
         }
         return true;
@@ -138,10 +144,10 @@ public class SignUpActivity extends AppCompatActivity {
                 // Check if user already exists
                 User user = new User(0, name, email, phoneNumber, password);
                 if (insertUser(user)) {
-                    Toasty.success(this, "Sign-Up Successful", Toast.LENGTH_LONG, true).show();
+                    Toasty.success(context, "Sign-Up Successful", Toast.LENGTH_LONG, true).show();
                     navigateToSignInActivity();
                 } else
-                    Toasty.error(this, "User Already Exists!", Toasty.LENGTH_LONG, true).show();
+                    Toasty.error(context, "User Already Exists!", Toasty.LENGTH_LONG, true).show();
 
             }, Constants.DELAY_PERIOD);
         }

@@ -1,5 +1,6 @@
 package com.dolla.e_commerce.ui.productdetails;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private int amount = 1;
     private int price;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         price = Integer.parseInt(product.getProductPrice());
         tvTotalPrice.setText("E£ " + price + ".00");
 
+        // set context
+        context = getApplicationContext();
+
         // set the image slider
         setImagesSlider(product.getProductImages());
 
@@ -84,11 +89,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setRadioButtonsVisibility(product.getProductSize());
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // to prevent memory leak
+        context = null;
+        imageSlider.stopSliding();
+    }
+
     private void setImagesSlider(List<String> productImages) {
-        ArrayList<SlideModel> slideModels = new ArrayList<>();
+        ArrayList<SlideModel> imageList = new ArrayList<>();
         for (String image : productImages)
-            slideModels.add(new SlideModel(Utilities.getResourceId(this, image), null));
-        imageSlider.setImageList(slideModels, ScaleTypes.CENTER_INSIDE);
+            imageList.add(new SlideModel(Utilities.getResourceId(context, image), null));
+        imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE);
     }
 
     private void setRadioButtonsVisibility(List<String> productSize) {
@@ -131,9 +144,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         if (radioGroup.getCheckedRadioButtonId() != -1) {
             Constants.PRODUCTS_CART_LIST.add(product);
             Constants.PRODUCT_CART_AMOUNT.add(amount);
-            Toasty.success(this, "Added to Cart", Toast.LENGTH_SHORT, true).show();
+            Toasty.success(context, "Added to Cart", Toast.LENGTH_SHORT, true).show();
             finish();
         } else
-            Toasty.warning(this, "Please select a size", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(context, "Please select a size", Toast.LENGTH_SHORT, true).show();
     }
 }

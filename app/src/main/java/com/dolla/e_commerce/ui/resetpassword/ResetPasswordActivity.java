@@ -1,5 +1,6 @@
 package com.dolla.e_commerce.ui.resetpassword;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private View layoutAuthentication;
     private LDMOpenHelper ldmOpenHelper;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         layoutAuthentication = findViewById(R.id.layout_authentication);
 
+        context = getApplicationContext();
+
         // create a new instance of LDMOpenHelper
         ldmOpenHelper = LDMOpenHelper.getInstance(this);
 
@@ -54,6 +58,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onPause();
         // animate the activity to slide out from left to right
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+        // to prevent memory leak
+        context = null;
     }
 
     // validate the email and password
@@ -100,10 +107,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
             if (user != null) {
                 user.setUserPassword(password);
                 ldmOpenHelper.updateUser(user);
-                Toasty.success(this, "Password Successfully Changed", Toasty.LENGTH_SHORT, true).show();
+                Toasty.success(context, "Password Successfully Changed", Toasty.LENGTH_SHORT, true).show();
                 navigateToSignInActivity();
             } else {
-                Toasty.error(this, "User E-mail doesn't exist", Toasty.LENGTH_SHORT, true).show();
+                Toasty.error(context, "User E-mail doesn't exist", Toasty.LENGTH_SHORT, true).show();
             }
 
         }, Constants.DELAY_PERIOD);

@@ -1,5 +1,6 @@
 package com.dolla.e_commerce.ui.signin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,7 @@ public class SignInActivity extends AppCompatActivity {
     private View layoutAuthentication;
     private LDMOpenHelper ldmOpenHelper;
     private Boolean isDestroying = true;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class SignInActivity extends AppCompatActivity {
         // create a new instance of LDMOpenHelper
         ldmOpenHelper = LDMOpenHelper.getInstance(this);
 
+        context = getApplicationContext();
+
         // get data from intent if exist and set it to the email field
         getIntentExtras();
 
@@ -62,6 +66,8 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // to prevent memory leak
+        context = null;
         // animate the activity to slide out from left to right
         if (isDestroying)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -125,14 +131,14 @@ public class SignInActivity extends AppCompatActivity {
             // Check if the user exists
             if (user != null) {
                 if (user.getUserEmail().equals(email) && user.getUserPassword().equals(password)) {
-                    Toasty.success(this, "Sign-In Successful", Toasty.LENGTH_SHORT, true).show();
+                    Toasty.success(context, "Sign-In Successful", Toasty.LENGTH_SHORT, true).show();
                     Constants.USER = user;
                     navigateToHomeActivity();
                 } else
-                    Toasty.error(this, "Wrong E-mail or Password!", Toasty.LENGTH_SHORT, true).show();
+                    Toasty.error(context, "Wrong E-mail or Password!", Toasty.LENGTH_SHORT, true).show();
 
             } else
-                Toasty.error(this, "User not Found!", Toasty.LENGTH_SHORT, true).show();
+                Toasty.error(context, "User not Found!", Toasty.LENGTH_SHORT, true).show();
 
         }, Constants.DELAY_PERIOD);
 

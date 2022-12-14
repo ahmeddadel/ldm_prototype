@@ -28,13 +28,12 @@ public class LDMOpenHelper extends SQLiteOpenHelper {
     private final Context context;
 
     // instate database for singleton pattern
-    private static LDMOpenHelper instance = null;
+    private static LDMOpenHelper instance;
 
     // singleton pattern to prevent multiple instances of database opening at the same time
     public static synchronized LDMOpenHelper getInstance(Context context) {
-        if (instance == null) {
+        if (instance == null)
             instance = new LDMOpenHelper(context.getApplicationContext());
-        }
         return instance;
     }
 
